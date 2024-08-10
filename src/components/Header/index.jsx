@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 function Header() {
     return (
         <>
-            <section>
-                <h1><span>CASUAL</span> GAMES</h1>
+            <section className={styles.header}>
+                <span className={styles.white}><span className={styles.red}>ARCADE</span> GAMES</span>
                 <ul>
                     <li><Link className={styles.link} to="/">HOME</Link></li>
                     <li><Link className={styles.link} to="/jokenpo">JOKENPÔ</Link></li>

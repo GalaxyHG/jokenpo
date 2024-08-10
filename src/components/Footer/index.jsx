@@ -3,7 +3,9 @@ import styles from './Footer.module.css'
 function Footer() {
     return (
         <>
-            <h1>This is footer</h1>
+            <section className={styles.footer}>
+                <span className={styles.white}>Desenvolvido por <span className={styles.red}>Helena Rezende</span> - 2024</span>
+            </section>
         </>
     )
 }
