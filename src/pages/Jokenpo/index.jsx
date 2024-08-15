@@ -1,4 +1,4 @@
-import styles from './Jokenpo.module.css';
+import './Jokenpo.module.css';
 import React, { useState, useEffect } from 'react';
 
 const choices = ['pedra', 'papel', 'tesoura']; //array com as escolhas possíveis
