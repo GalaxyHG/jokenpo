@@ -71,6 +71,7 @@ import tesoura from "../../assets/tesoura.png";
 function Jokenpo() {
   let [mostrarConteudo1, setMostrarConteudo1] = useState(false);
   let [mostrarConteudo2, setMostrarConteudo2] = useState(false);
+  let [mostrarResultado, setMostrarResultado] = useState(false);
 
   const umJogador = () => {
     if (mostrarConteudo2 == true) {
@@ -90,21 +91,31 @@ function Jokenpo() {
     }
   };
 
+  function jogar(escolha) {
+    
+
+  }
+
   return (
     <>
       <section className={styles.gameSection}>
         <span className={`${styles.titulo} ${styles.white}`}>
           <span className={styles.red}>JOGAR</span> JOKENPÔ
         </span>
-        <p>SELECIONE:</p>
+        <p className={styles.white}>SELECIONE:</p>
         <div className={styles.gameConsole}>
-          <button onClick={umJogador}>UM JOGADOR</button>
-          <button onClick={doisJogadores}>DOIS JOGADORES</button>
+          <button onClick={umJogador} id="single">UM JOGADOR</button>
+          <button onClick={doisJogadores} id="multi">DOIS JOGADORES</button>
         </div>
         <div className={styles.jokenpoDiv}>
           {mostrarConteudo1 && (
             <>
-              <div className={styles.buttonsDiv}>
+            <div className={`${styles.placar} ${styles.white}`}>
+              PLACAR:
+              <p><span className={styles.red}>VOCÊ: 1</span><hr /><span className={styles.white}> CPU: 0</span></p>
+            </div>
+            <span className={styles.white}>ESCOLHA:</span>
+              <div className={styles.buttonsDiv} onClick={jogar("pedra")}>
                 <button className={styles.choiceBtn}>
                   <img src={pedra} />
                 </button>

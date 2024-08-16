@@ -9,7 +9,25 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: 0% 35%;
+  padding: 1% 35%;
+}
+
+.gameConsole button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  color: #FFF;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.gameConsole button:hover {
+  text-decoration: underline;
+}
+
+.gameSection p {
+  font-size: 24px;
+  margin: 14px 0px;
 }
 
 .red {
@@ -32,6 +50,18 @@
   padding: 20px;
   height: 250px;
   width: 250px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.choiceBtn:hover img {
+  transform: rotate(360deg);
+  transition: 2.5s;
+}
+
+.choiceBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 16px rgba(255, 255, 255, 60%);
 }
 
 .choiceBtn img {
@@ -42,14 +72,46 @@
 
 .jokenpoDiv {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
-  margin-top: 25px;
+  margin-top: 25px; 
   padding: 0;
+}
+
+.jokenpoDiv span {
+  font-size: 24px;
+  margin: 14px 0px;
 }
 
 .buttonsDiv {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  padding: 0% 15%;
 }
+
+.placar {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0% 10%;
+}
+
+.placar p {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.placar p span {
+  font-size: 16px;
+}
+
+hr {
+  height: 25px;
+}
+
