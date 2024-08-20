@@ -55,8 +55,7 @@
 }
 
 .choiceBtn:hover img {
-  transform: rotate(360deg);
-  transition: 2.5s;
+  transform: rotate(30deg);
 }
 
 .choiceBtn:hover {
@@ -68,6 +67,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: .5s ease-in-out;
 }
 
 .jokenpoDiv {
@@ -101,7 +101,7 @@
 }
 
 .placar p {
-  width: 150px;
+  width: 250px;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -113,5 +113,10 @@
 
 hr {
   height: 25px;
+}
+
+.resultado {
+  font-size: 32px;
+  margin-top: 15px;
 }
 

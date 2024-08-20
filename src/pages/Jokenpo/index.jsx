@@ -67,8 +67,65 @@ import tesoura from "../../assets/tesoura.png";
 //         </div>
 //     );
 // };
-
 function Jokenpo() {
+
+  const choices = ['pedra', 'papel', 'tesoura'];
+
+  const [escolhaJogador, setEscolhaJogador] = useState(null);
+  const [escolhaComputador, setEscolhaComputador] = useState(null);
+  const [resultado, setResultado] = useState('');
+  const [placar, setPlacar] = useState({
+    jogador: 0,
+    computador: 0,
+    empate: 0
+  });
+
+  const getEscolhaComputador = () => {
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+  };
+
+  const getResultado = (escolhaJogador, escolhaComputador) => {//função para o
+    if (escolhaJogador === escolhaComputador) {
+      setPlacar({
+        ...placar,
+        empate: placar.empate+1
+      })
+      return 'Empate!';
+    }
+
+    if (
+      (escolhaJogador === 'pedra' && escolhaComputador === 'tesoura') ||
+      (escolhaJogador === 'papel' && escolhaComputador === 'pedra') ||
+      (escolhaJogador === 'tesoura' && escolhaComputador === 'papel')
+    ) {
+      setPlacar({
+        ...placar,
+        jogador: placar.jogador+1
+      })
+      return 'Você ganhou!';
+    } else {
+      setPlacar({
+        ...placar,
+        computador: placar.computador+1
+      })
+      return 'Você perdeu!';
+    }
+  };
+
+  useEffect(() => {
+    if (escolhaJogador) {
+      const escolha = getEscolhaComputador();
+      setEscolhaComputador(escolha);
+    }
+  }, [escolhaJogador]);
+
+  useEffect(() => {
+    if (escolhaJogador && escolhaComputador) {
+      setResultado(getResultado(escolhaJogador, escolhaComputador));
+    }
+  }, [escolhaComputador]);
+
   let [mostrarConteudo1, setMostrarConteudo1] = useState(false);
   let [mostrarConteudo2, setMostrarConteudo2] = useState(false);
   let [mostrarResultado, setMostrarResultado] = useState(false);
@@ -91,10 +148,9 @@ function Jokenpo() {
     }
   };
 
-  function jogar(escolha) {
-    
-
-  }
+  const escolheOpcao = (escolha) => {
+    setEscolhaJogador(escolha);
+  };
 
   return (
     <>
@@ -110,22 +166,49 @@ function Jokenpo() {
         <div className={styles.jokenpoDiv}>
           {mostrarConteudo1 && (
             <>
-            <div className={`${styles.placar} ${styles.white}`}>
-              PLACAR:
-              <p><span className={styles.red}>VOCÊ: 1</span><hr /><span className={styles.white}> CPU: 0</span></p>
-            </div>
-            <span className={styles.white}>ESCOLHA:</span>
-              <div className={styles.buttonsDiv} onClick={jogar("pedra")}>
-                <button className={styles.choiceBtn}>
-                  <img src={pedra} />
-                </button>
-                <button className={styles.choiceBtn}>
-                  <img src={papel} />
-                </button>
-                <button className={styles.choiceBtn}>
-                  <img src={tesoura} />
-                </button>
+              <div className={`${styles.placar} ${styles.white}`}>
+                PLACAR:
+                <p><span className={styles.red}>VOCÊ: {placar.jogador}</span><span className={styles.white}> CPU: {placar.computador}</span> <span className={styles.white}> Empates: {placar.empate}</span></p>
               </div>
+              {
+                escolhaJogador == null ? (
+                  <>
+                    <span className={styles.white}>ESCOLHA:</span>
+                    <div className={styles.buttonsDiv}>
+                      <button className={styles.choiceBtn} onClick={() => escolheOpcao('pedra')}>
+                        <img src={pedra} />
+                      </button>
+                      <button className={styles.choiceBtn} onClick={() => escolheOpcao('papel')}>
+                        <img src={papel} />
+                      </button>
+                      <button className={styles.choiceBtn} onClick={() => escolheOpcao('tesoura')}>
+                        <img src={tesoura} />
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className={styles.buttonsDiv}>
+                      {
+                        {
+                          'pedra': <button className={styles.choiceBtn}><img src={pedra} /></button>,
+                          'papel': <button className={styles.choiceBtn}><img src={papel} /></button>,
+                          'tesoura': <button className={styles.choiceBtn}><img src={tesoura} /></button>
+                        }[escolhaJogador]
+                      }
+                      {
+                        {
+                          'pedra': <button className={styles.choiceBtn}><img src={pedra} /></button>,
+                          'papel': <button className={styles.choiceBtn}><img src={papel} /></button>,
+                          'tesoura': <button className={styles.choiceBtn}><img src={tesoura} /></button>
+                        }[escolhaComputador]
+                      }
+                    </div>
+                    <div className={`${styles.resultado} ${styles.white}`}>{resultado}</div>
+                    <button onClick={() => {setEscolhaJogador(null)}}>JOGAR NOVAMENTE</button>
+                  </>
+                )
+              }
             </>
           )}
           {mostrarConteudo2 && <p>TEste2</p>}
